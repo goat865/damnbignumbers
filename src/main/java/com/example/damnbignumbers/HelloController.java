@@ -2,6 +2,7 @@ package com.example.damnbignumbers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class HelloController {
@@ -11,7 +12,7 @@ public class HelloController {
     private DamnBigNumber b = DamnBigNumber.DBN_ZERO;
     private char operation = '+';
 
-    public void handleAddClick(ActionEvent actionEvent) {
+    public void handleAddClick() {
         String displayNumStr = display.getText();
         a = new DamnBigNumber(displayNumStr);
         operation = '+';
@@ -39,5 +40,12 @@ public class HelloController {
 
                 break;
         }
+    }
+
+    public void handleDigitClick(ActionEvent actionEvent) {
+        Button src = (Button) actionEvent.getSource();
+        String value = src.getText();
+        int digit = Integer.parseInt(value);
+        display.setText(display.getText() + value);
     }
 }
