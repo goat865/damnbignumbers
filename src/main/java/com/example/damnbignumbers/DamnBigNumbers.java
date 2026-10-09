@@ -18,7 +18,15 @@ public class DamnBigNumbers {
      * @return DamnBigNumber
      */
     public static DamnBigNumber add(DamnBigNumber a, DamnBigNumber b) {
-        return a;
+        String str = "";
+
+        for (int i = a.getNumStr().length() - 1; i >= 0; i--) {
+            int digitResult = a.getNumStr().charAt(i) - 48 + b.getNumStr().charAt(i) - 48;
+            str = String.format("%d", digitResult) + str;
+        }
+
+        DamnBigNumber c = new DamnBigNumber(str);
+        return c;
     }
 
     /**

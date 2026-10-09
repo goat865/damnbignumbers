@@ -37,7 +37,8 @@ public class DamnBigNumber {
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        DamnBigNumber other = (DamnBigNumber) obj;
+        return this.getNumStr().equals((other).getNumStr());
     }
 
     public long getLong() {
