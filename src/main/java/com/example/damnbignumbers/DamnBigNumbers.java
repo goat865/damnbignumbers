@@ -18,12 +18,35 @@ public class DamnBigNumbers {
      * @return DamnBigNumber
      */
     public static DamnBigNumber add(DamnBigNumber a, DamnBigNumber b) {
+        if (a.getNumStr().length() < b.getNumStr().length()) {
+            for (int i = 0; i < b.getNumStr().length() - a.getNumStr().length(); i++) {
+                a.setNumStr("0" + a.getNumStr());
+            }
+
+        } else if (b.getNumStr().length() < a.getNumStr().length()) {
+            for (int i = 0; i < a.getNumStr().length() - b.getNumStr().length(); i++) {
+                b.setNumStr("0" + b.getNumStr());
+            }
+        }
+
         String str = "";
+        int carry = 0;
 
         for (int i = a.getNumStr().length() - 1; i >= 0; i--) {
-            int digitResult = a.getNumStr().charAt(i) - 48 + b.getNumStr().charAt(i) - 48;
+            int digitResult = a.getNumStr().charAt(i) - 48 + b.getNumStr().charAt(i) - 48 + carry;
+
+            if (digitResult >= 10) {
+                digitResult -= 10;
+                carry = 1;
+
+            } else {
+                carry = 0;
+            }
+
             str = String.format("%d", digitResult) + str;
         }
+
+        if (carry > 0) str = "1" + str;
 
         DamnBigNumber c = new DamnBigNumber(str);
         return c;
